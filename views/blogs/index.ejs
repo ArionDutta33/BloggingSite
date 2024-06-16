@@ -26,22 +26,22 @@
 </style>
 
 <body>
-    <!-- border on log in and navbar and container -->
-    <div class="container border-2 w-full min-h-full px-6 bg-[#0E1118] text-white">
-        <div class="navbar border-2 flex item-center justify-between py-4">
+    <!--  removed border  on log in and navbar and container -->
+    <div class="container  -2 w-full min-h-full px-6 bg-[#0E1118] text-white">
+        <div class="navbar  -2 flex item-center justify-between py-4">
             <div class="logo font-bold text-2xl"><span class="text-yellow-600">Serene</span> Scribbles</div>
             <form action="">
                 <input type="text" name="searchBlog" id="searchBlog" placeholder="Search Blogs. . . . . "
                     class=" bg-[#263047] px-4 w-80 rounded-md text-gray-500 text-xs py-2 outline-none">
             </form>
-            <div class="navlinks flex space-x-4 font-medium px-6  border-2">
+            <div class="navlinks flex space-x-4 font-medium px-6   -2">
                 <a href="">Log In</a>
                 <a href="">Register</a>
                 <a href="">Log Out</a>
             </div>
         </div>
-        <div class="hero-menu border-2 flex space-x-60  ">
-            <div class="sidemenu border-2 flex text-base text-gray-400 flex-col max-w-fit px-4 my-6 space-y-4">
+        <div class="hero-menu  -2 flex space-x-60  ">
+            <div class="sidemenu  -2 flex text-base text-gray-400 flex-col max-w-fit px-4 my-6 space-y-4">
                 <a href=""><i class="fa-solid fa-file text-gray-400 mr-2"></i></i>Articles</a>
                 <a href=""><i class="fa-solid fa-video text-gray-400 mr-2"></i>Videos</a>
                 <a href=""><i class="fa-solid fa-book text-gray-400 mr-2"> </i>Stories</a>
@@ -56,10 +56,10 @@
             </div>
         </div>
         <div class="blogs my-2 font-bold text-2xl underline">Blogs</div>
-        <div class="articlescontainer flex space-x-6 flex-wrap   border-2 border-red-500 px-4">
+        <div class="articlescontainer flex space-x-6 flex-wrap    -2  -red-500 px-4">
 
             <% for(let blog of blogs){ %>
-                <div class="article flex flex-col border-yellow-500 w-64 h-64 my-4  rounded-md border-2">
+                <div class="article flex flex-col  -yellow-500 w-64 h-64 my-4  rounded-md  -2">
                     <div class="imgcontainer   w-full h-44">
                         <img class="w-full h-full object-cover object-center"
                             src="https://images.unsplash.com/photo-1561707553-c5ea5032dbb7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZnVua3l8ZW58MHx8MHx8fDA%3D"
