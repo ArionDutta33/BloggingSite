@@ -35,14 +35,18 @@ app.get('/blogs', async (req, res) => {
     res.render('blogs/index', { blogs })
 });
 app.get("/blogs/new", (req, res) => {
-    res.send("form for new blog")
+    res.render("blogs/new")
 })
 
 //post create new blog
-
+app.post("/blogs/new", (req, res) => {
+    res.render("blogs/new")
+})
 //show the individual blog
-app.get("/blogs/:id", (req, res) => {
-    res.render("blogs/show")
+app.get("/blogs/:id", async (req, res) => {
+    const { id } = req.params
+    const blog = await Blog.findById(id)
+    res.render("blogs/show", { blog })
 })
 app.listen(3000, () => {
     console.log("SERVER RUNNING")
