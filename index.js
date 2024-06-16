@@ -39,14 +39,24 @@ app.get("/blogs/new", (req, res) => {
 })
 
 //post create new blog
-app.post("/blogs/new", (req, res) => {
-    res.render("blogs/new")
+app.post("/blogs", async (req, res) => {
+
+    try {
+        const blog = new Blog(req.body.blogs)
+        await blog.save()
+        res.redirect("/blogs")
+    } catch (e) {
+        console.log("ERROR ERROR ERROR ERROR ------>>>>>>", e)
+    }
 })
 //show the individual blog
 app.get("/blogs/:id", async (req, res) => {
     const { id } = req.params
     const blog = await Blog.findById(id)
     res.render("blogs/show", { blog })
+})
+app.get("/blogs/:id/edit", (req, res) => {
+    res.send("edit")
 })
 app.listen(3000, () => {
     console.log("SERVER RUNNING")
