@@ -69,8 +69,12 @@
                             alt="">
                     </div>
                     <div class="articletext flex-1   text-white px-2 pt-2 font-medium bg-[#21262D]">
-                        <h3> <a href="/blogs/<%=blog._id %>">How to optimize your code reviews</a></h3>
-                        <div class="author text-xs font-normal text-gray-500">Arunabh</div>
+                        <h3> <a href="/blogs/<%=blog._id %>">
+                                <%=blog.title %>
+                            </a></h3>
+                        <div class="author text-xs font-normal text-gray-500">
+                            <%=blog.author %>
+                        </div>
                     </div>
                 </div>
                 <% } %>
