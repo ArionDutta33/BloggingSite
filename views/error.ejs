@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/output.css">
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html,
+    body {
+        height: 100%;
+        width: 100%;
+    }
+</style>
+
+<body>
+    <div class="container flex items-center justify-center flex-col text-white w-full h-full bg-[#020202]">
+        <div class="genericerrormsg font-bold text-6xl">OOPS !!! SOMETHING WENT WRONG <%=err.message %>
+        </div>
+        <a href="/blogs"><button class="bg-blue-500 px-12 py-2 rounded-md mt-8">Back to home</button></a>
+    </div>
+</body>
+
+</html>
