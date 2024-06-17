@@ -3,7 +3,7 @@
 
     <div class="navlinks flex space-x-4 font-medium px-6 -2">
         <% if (!currentUser || !currentUser._id) { %>
-            <a href="/login">Log In</a>
+            <a href="/login" class="whitespace-nowrap">Log In</a>
             <a href="/register">Register</a>
             <% } else { %>
                 <a href="/logout">Log Out</a>
