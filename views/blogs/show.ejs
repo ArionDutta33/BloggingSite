@@ -25,7 +25,7 @@
             width: 100%;
         }
     </style>
-    <div class="container  max-w-fit  w-full min-h-full px-6 text-white bg-[#020202]">
+    <div class="container     min-w-full  min-h-full px-6 text-white bg-[#020202]">
         <%-include("../partials/navbar.ejs") %>
         <div class="heromenu    flex space-x-40 ">
             <div class="socials flex flex-col    space-y-4 py-6 items-center justify-center">
@@ -57,7 +57,7 @@
         </div>
         <% } %>
         <div class="body text-lg font-normal px-16 py-6 leading-relaxed">
-            <%=blog.body %>
+            <%-blog.body %>
         </div>
     </div>
 

@@ -797,6 +797,15 @@ video {
   width: 2rem;
 }
 
+.min-w-fit {
+  min-width: -moz-fit-content;
+  min-width: fit-content;
+}
+
+.min-w-full {
+  min-width: 100%;
+}
+
 .max-w-fit {
   max-width: -moz-fit-content;
   max-width: fit-content;
