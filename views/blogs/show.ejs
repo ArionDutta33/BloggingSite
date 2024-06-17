@@ -26,18 +26,7 @@
         }
     </style>
     <div class="container    w-full min-h-full px-6 text-white bg-[#020202]">
-        <div class="navbar    flex item-center justify-between py-4">
-            <div class="logo font-bold text-2xl"><span class="text-yellow-600">Serene</span> Scribbles</div>
-            <form action="">
-                <input type="text" name="searchBlog" id="searchBlog" placeholder="Search Blogs. . . . . "
-                    class=" bg-[#263047] px-4 w-80 rounded-md text-gray-500 text-xs py-2 outline-none">
-            </form>
-            <div class="navlinks flex space-x-4 font-medium px-6    ">
-                <a href="">Log In</a>
-                <a href="">Register</a>
-                <a href="">Log Out</a>
-            </div>
-        </div>
+        <%-include("../partials/navbar.ejs") %>
         <div class="heromenu    flex space-x-40 ">
             <div class="socials flex flex-col    space-y-4 py-6 items-center justify-center">
                 <a href="" class="  text-lg hover:bg-red-600 px-12 py-2 rounded-r-full"><i
@@ -55,9 +44,17 @@
             </div>
 
         </div>
-        <div class="author underline font-medium px-2 py-4">John Doe</div>
+        <div class="author text-gray-500 font-medium px-2 py-4">
+            By : <%=blog.author %>
+        </div>
+        <div class="edit px-2  "><a href="/blogs/<%=blog._id  %>/edit"><span class="underline">Edit the blog</span> <i
+                    class="fa-solid fa-pen"></i></a></div>
+        <div class="delete px-2 ">
+            <form action="/blogs/<%=blog._id  %>?_method=DELETE" method="POST"><button><span
+                        class="underline">Delete</span> <i class="fa fa-trash"></i></button></form>
+        </div>
         <div class="body text-lg font-normal px-16 py-6 leading-relaxed">
-            <%=blog.title %>
+            <%=blog.body %>
         </div>
     </div>
 
