@@ -19,7 +19,7 @@ This is a full-stack blogging website built with Node.js, Express.js, EJS, Tailw
 - **Authentication:** Passport.js
 - **Authorization:** Role-based access control (Admin, User)
 - **Validation:** Joi
-- **Database:** (Specify your database here, e.g., MongoDB, MySQL)
-- **Deployment:** (Optional, specify if deployed, e.g., Heroku, AWS)
+- **Database:** MongoDB
+- **Deployment:** --
 
  
