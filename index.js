@@ -19,7 +19,7 @@ const User = require("./models/user");
 const blogRoutes = require("./routes/blog")
 
 
-
+const userRoutes = require("./routes/user")
 
 
 //end
@@ -53,6 +53,12 @@ passport.use(new LocalStrategy(User.authenticate()))
 
 passport.serializeUser(User.serializeUser())
 passport.deserializeUser(User.deserializeUser())
+
+app.use((req, res, next) => {
+    res.locals.currentUser = req.user
+    next()
+})
+
 app.use(express.urlencoded({
     extended: true
 }));
@@ -75,6 +81,7 @@ app.get("/fakeuser", async (req, res) => {
 app.get("/", (req, res) => {
     res.render("index")
 })
+app.use("/", userRoutes)
 app.use("/blogs", blogRoutes)
 
 
