@@ -47,12 +47,15 @@
         <div class="author text-gray-500 font-medium px-2 py-4">
             By : <%=blog.author %>
         </div>
+
+        <% if(currentUser && blog.author.equals(currentUser._id)){ %>
         <div class="edit px-2  "><a href="/blogs/<%=blog._id  %>/edit"><span class="underline">Edit the blog</span> <i
                     class="fa-solid fa-pen"></i></a></div>
         <div class="delete px-2 ">
             <form action="/blogs/<%=blog._id  %>?_method=DELETE" method="POST"><button><span
                         class="underline">Delete</span> <i class="fa fa-trash"></i></button></form>
         </div>
+        <% } %>
         <div class="body text-lg font-normal px-16 py-6 leading-relaxed">
             <%=blog.body %>
         </div>
