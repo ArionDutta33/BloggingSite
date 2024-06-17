@@ -4,7 +4,7 @@ const Blog = require("../models/blogs")
 const ExpressError = require("../utils/ExpressError")
 const Async = require("../utils/Async")
 const { isLoggedIn } = require("../middleware")
-
+const { isAuthor } = require("../middleware")
 
 router.get('/', Async(async (req, res) => {
     const blogs = await Blog.find({}).populate("author")
@@ -19,6 +19,7 @@ router.post("/", isLoggedIn, Async(async (req, res) => {
 
 
     const blog = new Blog(req.body.blogs)
+    blog.author = req.user._id
     await blog.save()
     res.redirect("/blogs")
 
@@ -29,17 +30,17 @@ router.get("/:id", Async(async (req, res) => {
     const blog = await Blog.findById(id)
     res.render("blogs/show", { blog })
 }))
-router.get("/:id/edit", isLoggedIn, Async(async (req, res) => {
+router.get("/:id/edit", isLoggedIn, isAuthor, Async(async (req, res) => {
     const { id } = req.params
     const blog = await Blog.findById(id)
     res.render("blogs/edit", { blog })
 }))
-router.put("/:id", isLoggedIn, Async(async (req, res) => {
+router.put("/:id", isLoggedIn, isAuthor, Async(async (req, res) => {
     const { id } = req.params
     const blog = await Blog.findByIdAndUpdate(id, req.body.blogs)
     res.redirect(`/blogs/${blog._id}`)
 }))
-router.delete("/:id", isLoggedIn, Async(async (req, res) => {
+router.delete("/:id", isLoggedIn, isAuthor, Async(async (req, res) => {
 
     const { id } = req.params
     const blog = await Blog.findByIdAndDelete(id)
