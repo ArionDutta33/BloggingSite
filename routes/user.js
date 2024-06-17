@@ -7,6 +7,7 @@ const User = require("../models/user")
 const passport = require("passport")
 
 router.get("/register", (req, res) => {
+   
     res.render("authform/register")
 })
 router.post("/register", Async(async (req, res) => {
@@ -14,7 +15,10 @@ router.post("/register", Async(async (req, res) => {
         const { email, username, password } = req.body
         const user = new User({ email, username })
         const registeredUser = await User.register(user, password)
-        res.redirect("/blogs")
+        req.login(registeredUser,err=>{
+            if(err) return next
+            res.redirect("/blogs")
+        })
     } catch (e) {
         res.redirect("/register")
     }
