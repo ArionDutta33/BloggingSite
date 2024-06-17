@@ -26,11 +26,16 @@ router.post("/", isLoggedIn, validateBlog, Async(async (req, res) => {
 
 
 
-    const blog = new Blog(req.body.blogs)
-    blog.author = req.user._id
-    await blog.save()
-    res.redirect("/blogs")
+    try {
+        const blog = new Blog(req.body.blogs)
+        blog.author = req.user._id
+        await blog.save()
+        req.flash("success", "New post added !!!")
+        res.redirect("/blogs")
 
+    } catch (e) {
+        console.log("error", e)
+    }
 }))
 //show the individual blog
 router.get("/:id", Async(async (req, res) => {
@@ -46,12 +51,14 @@ router.get("/:id/edit", isLoggedIn, isAuthor, Async(async (req, res) => {
 router.put("/:id", isLoggedIn, isAuthor, Async(async (req, res) => {
     const { id } = req.params
     const blog = await Blog.findByIdAndUpdate(id, req.body.blogs)
+    req.flash("success", "Successfully edited the article")
     res.redirect(`/blogs/${blog._id}`)
 }))
 router.delete("/:id", isLoggedIn, isAuthor, Async(async (req, res) => {
 
     const { id } = req.params
     const blog = await Blog.findByIdAndDelete(id)
+    req.flash("success", "Successfully deleted the article")
     res.redirect(`/blogs`)
 }))
 

@@ -5,6 +5,8 @@ const Async = require("./utils/Async")
 const ExpressError = require("./utils/ExpressError")
 const path = require('path');
 const session = require("express-session")
+const flash = require('connect-flash');
+
 const methodOverride = require("method-override")
 const ejsMate = require('ejs-mate');
 const Blog = require("./models/blogs")
@@ -46,7 +48,7 @@ const sessionConfig = {
     }
 }
 app.use(session(sessionConfig))
-//flash
+app.use(flash());
 app.use(passport.initialize())
 app.use(passport.session())
 passport.use(new LocalStrategy(User.authenticate()))
@@ -56,6 +58,8 @@ passport.deserializeUser(User.deserializeUser())
 
 app.use((req, res, next) => {
     res.locals.currentUser = req.user
+    res.locals.success = req.flash('success');
+    res.locals.error = req.flash('error');
     next()
 })
 
