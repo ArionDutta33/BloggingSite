@@ -5,7 +5,8 @@ const ExpressError = require("../utils/ExpressError")
 const Async = require("../utils/Async")
 const { isLoggedIn } = require("../middleware")
 const { isAuthor } = require("../middleware")
-
+const { validateBlog } = require("../middleware")
+const Joi = require("joi")
 router.get('/', Async(async (req, res) => {
     const blogs = await Blog.find({}).populate("author")
     res.render('blogs/index', { blogs })
@@ -14,8 +15,15 @@ router.get("/new", isLoggedIn, (req, res) => {
     res.render("blogs/new")
 })
 
+//middleware
+//shifted
+
+
+
+
 //post create new blog
-router.post("/", isLoggedIn, Async(async (req, res) => {
+router.post("/", isLoggedIn, validateBlog, Async(async (req, res) => {
+
 
 
     const blog = new Blog(req.body.blogs)
