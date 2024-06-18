@@ -25,7 +25,7 @@
   font-optical-sizing: auto;
   font-weight: normal;
   font-style: normal;
- 
+ list-style: none;
     }
 
     html,
@@ -39,14 +39,15 @@
     <!--  removed border  on log in and navbar and container -->
     <div class="container min-w-full  min-h-full px-6 bg-[#0E1118] text-white">
         <%-include("../partials/navbar.ejs") %>
-            <div class="hero-menu   border-2  flex  flex-col  mb-6 ">
-                <div class="sidemenu  border-2  flex   text-base text-gray-400  max-w-fit px-4 my-6  ">
-                    <a href=""><i class="fa-solid fa-file text-gray-400 mr-2"></i></i>Articles</a>
-                    <a href=""><i class="fa-solid fa-video text-gray-400 mr-2"></i>Videos</a>
-                    <a href=""><i class="fa-solid fa-book text-gray-400 mr-2"> </i>Stories</a>
-                    <a href=""><i class="fa-solid fa-microphone text-gray-400 mr-2"></i>Podcasts</a>
+            <div class="hero-menu   border-2 border-green-600  flex  flex-col sm:flex-row    mb-6 ">
+                <div class="sidemenu text-sm  border-2  flex  space-x-4  text-gray-400   max-w-fit px-2 my-6 sm:flex-col sm:gap-4  ">
+                   <li></li>
+                    <a href=""><i class="fa-solid fa-file text-gray-400 mr-1"></i></i> <span> </span>Articles</a>
+                    <a href=""><i class="fa-solid fa-video text-gray-400 mr-1"></i><span> </span>Videos</a>
+                    <a href=""><i class="fa-solid fa-book text-gray-400 mr-1"> </i><span> </span>Stories</a>
+                    <a href="" class="whitespace-nowrap"><i class="fa-solid fa-microphone text-gray-400 mr-1"></i><span> </span>Podcasts</a>
                 </div>
-                <div class="maintext text-2xl  px-4 font-normal py-2   leading-snug">Stories and insights from all
+                <div class="maintext text-2xl  px-4 font-normal py-2 border-2 sm:flex sm:items-center  leading-snug">Stories and insights from all
                      over
                     the
                     world in
@@ -59,7 +60,7 @@
             <span class="addblog mx-6"><a href="/blogs/new"><button
                         class="bg-blue-600 active:bg-blue-700 rounded-lg px-6 py-2"><i class="fa-plus"></i> Add a new
                         blog</button></a></span>
-            <div class="articlescontainer flex space-x-6 flex-wrap        px-4">
+            <div class="articlescontainer flex  flex-wrap        px-4">
 
                 <% for(let blog of blogs){ %>
                     <div class="article flex flex-col    w-64 h-64 my-4  rounded-md   ">
