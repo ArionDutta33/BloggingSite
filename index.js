@@ -19,8 +19,9 @@ const LocalStrategy = require("passport-local")
 const User = require("./models/user");
 const mongoSanitize = require('express-mongo-sanitize');
 const helmet=require("helmet")
-const db_url =process.env.BD_URL|| "mongodb://127.0.0.1:27017/Blog"
+const db_url =process.env.DB_URL|| "mongodb://127.0.0.1:27017/Blog"
 // process.env.DB_URL
+
 const MongoDBStrore=require("connect-mongo")(session)
 //routes
 
@@ -45,10 +46,10 @@ mongoose.connect(db_url).then(() => {
 app.engine('ejs', ejsMate)
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'))
-
+const secret = process.env.SECRET || "password"
 const store=new MongoDBStrore({
     url:db_url,
-    secret: "password",
+    secret,
     touchAfter:24*60*60
 })
 store.on("error",function(e){
@@ -58,7 +59,7 @@ store.on("error",function(e){
 const sessionConfig = {
     store,
     name:"session",
-    secret: "password",
+    secret ,
     resave: false,
     saveUninitialized: true,
     Cookie: {
@@ -208,6 +209,9 @@ app.use((err, req, res, next) => {
         err
     })
 })
-app.listen(3000, () => {
+
+
+const port=process.env.PORT||3000
+app.listen(port, () => {
     console.log("SERVER RUNNING")
 })
