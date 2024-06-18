@@ -40,7 +40,7 @@ router.post("/", isLoggedIn, validateBlog, Async(async (req, res) => {
 //show the individual blog
 router.get("/:id", Async(async (req, res) => {
     const { id } = req.params
-    const blog = await Blog.findById(id)
+    const blog = await Blog.findById(id).populate('author')
     res.render("blogs/show", { blog })
 }))
 router.get("/:id/edit", isLoggedIn, isAuthor, Async(async (req, res) => {

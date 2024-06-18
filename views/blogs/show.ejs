@@ -51,7 +51,7 @@
 
         </div>
         <div class="author text-gray-500 font-medium px-2 py-4">
-            By : <%=blog.author %>
+            By : <%=blog.author.username %>
         </div>
 
         <% if(currentUser && blog.author.equals(currentUser._id)){ %>
