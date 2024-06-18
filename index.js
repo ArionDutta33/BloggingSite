@@ -19,7 +19,7 @@ const LocalStrategy = require("passport-local")
 const User = require("./models/user");
 const mongoSanitize = require('express-mongo-sanitize');
 const helmet=require("helmet")
-const db_url = "mongodb://127.0.0.1:27017/Blog"
+const db_url =process.env.BD_URL|| "mongodb://127.0.0.1:27017/Blog"
 // process.env.DB_URL
 const MongoDBStrore=require("connect-mongo")(session)
 //routes
