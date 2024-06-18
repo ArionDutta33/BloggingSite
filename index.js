@@ -19,7 +19,9 @@ const LocalStrategy = require("passport-local")
 const User = require("./models/user");
 const mongoSanitize = require('express-mongo-sanitize');
 const helmet=require("helmet")
-const db_url=process.env.DB_URL
+const db_url = "mongodb://127.0.0.1:27017/Blog"
+// process.env.DB_URL
+const MongoDBStrore=require("connect-mongo")(session)
 //routes
 
 
@@ -27,7 +29,8 @@ const blogRoutes = require("./routes/blog")
 
 
 const userRoutes = require("./routes/user");
-const { object } = require('joi');
+const { object, func } = require('joi');
+const { strict } = require("assert");
 
 
 //end
@@ -43,7 +46,17 @@ app.engine('ejs', ejsMate)
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'))
 
+const store=new MongoDBStrore({
+    url:db_url,
+    secret: "password",
+    touchAfter:24*60*60
+})
+store.on("error",function(e){
+    console.log("Session error",e)
+})
+
 const sessionConfig = {
+    store,
     name:"session",
     secret: "password",
     resave: false,
@@ -59,48 +72,88 @@ app.use(session(sessionConfig))
 app.use(flash());
 app.use(helmet( ))
 
-const scriptSrcUrls = [
-    "'unsafe-inline'",
-    "'self'",
-    "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css",
-    "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js",
-    "https://cdn.tiny.cloud/1/gajuheuruiqplk071bg268yxvuipk6aj30mbrf5912k1ghax/tinymce/7/tinymce.min.js"
-];
+// const scriptSrcUrls = [
+//     "'self'",
+//     "'unsafe-inline'",
+//     "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css",
+//     "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js",
+//     "https://cdnjs.cloudflare.com/ajax/libs/tinymce/7.1.2/tinymce.min.js",
+//     "https://cdn.tiny.cloud/1/gajuheuruiqplk071bg268yxvuipk6aj30mbrf5912k1ghax/tinymce/7/tinymce.min.js",
+//     "https://cdn.tiny.cloud/1/gajuheuruiqplk071bg268yxvuipk6aj30mbrf5912k1ghax/tinymce/7.1.2-65/themes/silver/theme.min.js" // Add this line
+// ];
+// const styleSrcUrls = [
+//     "'self'",
+//     "'unsafe-inline'",
+//     "https://fonts.googleapis.com",
+//     "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css", // Example for Font Awesome
+// ];
+// const fontSrcUrls = [
+//     "'self'",
+//     "https://fonts.googleapis.com",
+//     "https://fonts.gstatic.com",
+//     "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/webfonts/", // Example for Font Awesome
+// ];
+// const workerSrcUrls = [
+//     "'self'",
+//     "blob:",
+//     // Add other worker sources if required by Tinymce
+// ];
 
-const styleSrcUrls = ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"];
-
-const fontSrcUrls = [
-    "'self'",
-    "https://fonts.googleapis.com"
-];
-
-const imgSrcUrls = [
-    "'self'",
-    "blob:",
-    "data:",
-    "https://unsplash.com/",
-    "https://images.unsplash.com/"
-];
+// const imgSrcUrls = [
+//     "'self'",
+//     "blob:",
+//     "data:",
+//     "https://unsplash.com/",
+//     "https://images.unsplash.com/",
+//    " https://sp.tinymce.com"
+//     // Add other image sources if required by Tinymce
+// ];
 
 app.use(helmet({
     contentSecurityPolicy: {
         directives: {
-            defaultSrc: [],
+            defaultSrc: ["'self'"],
             scriptSrc: [
                 "'self'",
+                "https://cdnjs.cloudflare.com",
+                "https://sp.tinymce.com",
+                "https://cdn.tiny.cloud",
                 "'unsafe-inline'",
-                "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css",
-                "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js",
-                "https://cdn.tiny.cloud/1/gajuheuruiqplk071bg268yxvuipk6aj30mbrf5912k1ghax/tinymce/7/tinymce.min.js"
+                "https://cdn.tiny.cloud/1/gajuheuruiqplk071bg268yxvuipk6aj30mbrf5912k1ghax/tinymce/7.1.2-65/plugins/*", // Add this line
             ],
-            styleSrc: ["'self'", "'unsafe-inline'",  "https://fonts.googleapis.com", "https://cdnjs.cloudflare.com"],
-            workerSrc: ["'self'", "blob:"],
-            objectSrc: [],
-            imgSrc: imgSrcUrls,
-            fontSrc: ["'self'", "https://fonts.googleapis.com", "https://fonts.gstatic.com", "https://cdnjs.cloudflare.com"]
+            styleSrc: [
+                "'self'",
+                "https://cdnjs.cloudflare.com",
+                "https://fonts.googleapis.com",
+                "'unsafe-inline'",
+                "https://cdn.tiny.cloud/1/gajuheuruiqplk071bg268yxvuipk6aj30mbrf5912k1ghax/tinymce/7.1.2-65/themes/silver/theme.min.css", // Add this line
+                "https://cdn.tiny.cloud/1/gajuheuruiqplk071bg268yxvuipk6aj30mbrf5912k1ghax/tinymce/7.1.2-65/skins/ui/oxide/skin.min.css", // Add this line
+                "https://cdn.tiny.cloud/1/gajuheuruiqplk071bg268yxvuipk6aj30mbrf5912k1ghax/tinymce/7.1.2-65/skins/content/default/content.min.css", // Add this line
+            ],
+            fontSrc: [
+                "'self'",
+                "https://fonts.googleapis.com",
+                "https://fonts.gstatic.com",
+                "https://cdnjs.cloudflare.com",
+            ],
+            imgSrc: [
+                "'self'",
+                "blob:",
+                "data:",
+                "https://unsplash.com",
+                "https://images.unsplash.com",
+                "https://sp.tinymce.com",
+            ],
+            connectSrc: [
+                "'self'",
+                "https://sp.tinymce.com",
+                "https://cdn.tiny.cloud/1/gajuheuruiqplk071bg268yxvuipk6aj30mbrf5912k1ghax/tinymce/7.1.2-65/cdn-init", // Add this line
+            ],
         },
     },
 }));
+
+
 
 app.use(passport.initialize())
 app.use(passport.session())
