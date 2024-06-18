@@ -20,7 +20,7 @@ router.post("/register", Async(async (req, res) => {
             res.redirect("/blogs")
         })
     } catch (e) {
-        req.flash("error", "Something went wrong")
+        // req.flash("error", "Something went wrong")
         console.log("this error",e)
         res.redirect("/register")
     }
@@ -39,7 +39,7 @@ router.post('/login',
     (req, res) => {
 
         const redirectUrl = res.locals.returnTo || '/blogs'; // update this line to use res.locals.returnTo now
-        req.flash("success", "Welcome back.....")
+        // req.flash("success", "Welcome back.....")
         res.redirect(redirectUrl);
     });
 
@@ -59,7 +59,7 @@ router.get('/logout', (req, res, next) => {
         if (err) {
             return next(err);
         }
-req.flash("success","Log out successful")
+// req.flash("success","Log out successful")
         res.redirect('/blogs');
     });
 });
