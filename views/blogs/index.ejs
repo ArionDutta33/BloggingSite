@@ -9,6 +9,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
+            rel="stylesheet">
 
 </head>
 <style>
@@ -16,6 +20,12 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+       
+  font-family: "Roboto Condensed", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: normal;
+  font-style: normal;
+ 
     }
 
     html,
@@ -29,15 +39,15 @@
     <!--  removed border  on log in and navbar and container -->
     <div class="container min-w-full  min-h-full px-6 bg-[#0E1118] text-white">
         <%-include("../partials/navbar.ejs") %>
-            <div class="hero-menu    flex space-x-60  ">
-                <div class="sidemenu    flex text-base text-gray-400 flex-col max-w-fit px-4 my-6 space-y-4">
+            <div class="hero-menu   border-2  flex  flex-col  mb-6 ">
+                <div class="sidemenu  border-2  flex   text-base text-gray-400  max-w-fit px-4 my-6  ">
                     <a href=""><i class="fa-solid fa-file text-gray-400 mr-2"></i></i>Articles</a>
                     <a href=""><i class="fa-solid fa-video text-gray-400 mr-2"></i>Videos</a>
                     <a href=""><i class="fa-solid fa-book text-gray-400 mr-2"> </i>Stories</a>
                     <a href=""><i class="fa-solid fa-microphone text-gray-400 mr-2"></i>Podcasts</a>
                 </div>
-                <div class="maintext text-4xl font-medium self-center  leading-relaxed">Stories,insights from all
-                    <br>over
+                <div class="maintext text-2xl  px-4 font-normal py-2   leading-snug">Stories and insights from all
+                     over
                     the
                     world in
                     different
