@@ -93,7 +93,7 @@ app.use(helmet({
                 "https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js",
                 "https://cdn.tiny.cloud/1/gajuheuruiqplk071bg268yxvuipk6aj30mbrf5912k1ghax/tinymce/7/tinymce.min.js"
             ],
-            styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com", "https://cdnjs.cloudflare.com"],
+            styleSrc: ["'self'", "'unsafe-inline'",  "https://fonts.googleapis.com", "https://cdnjs.cloudflare.com"],
             workerSrc: ["'self'", "blob:"],
             objectSrc: [],
             imgSrc: imgSrcUrls,
