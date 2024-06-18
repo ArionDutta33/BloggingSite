@@ -20,7 +20,8 @@ router.post("/register", Async(async (req, res) => {
             res.redirect("/blogs")
         })
     } catch (e) {
-        req.flash("error", "Oh no !!! Something is not right")
+        req.flash("error", "Something went wrong")
+        console.log("this error",e)
         res.redirect("/register")
     }
 }))
@@ -33,7 +34,7 @@ router.post('/login',
     // use the storeReturnTo middleware to save the returnTo value from session to res.locals
     storeReturnTo,
     // passport.authenticate logs the user in and clears req.session
-    passport.authenticate('local', { failureRedirect: '/login' }),
+    passport.authenticate('local', {  failureRedirect: '/login' }),
     // Now we can use res.locals.returnTo to redirect the user after login
     (req, res) => {
 
@@ -58,7 +59,7 @@ router.get('/logout', (req, res, next) => {
         if (err) {
             return next(err);
         }
-
+req.flash("success","Log out successful")
         res.redirect('/blogs');
     });
 });
