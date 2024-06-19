@@ -22,4 +22,10 @@ This is a full-stack blogging website built with Node.js, Express.js, EJS, Tailw
 - **Database:** MongoDB
 - **Deployment:** --
 
- 
+ ##Screen shots
+ **Home Page**
+-![serene-scribbles-high-resolution-logo-black-transparent](https://github.com/ArionDutta33/BloggingSite/assets/146577817/3bfb69a5-8651-46b6-88b4-00a5fd6d5499)
+**Log in**
+-![login](https://github.com/ArionDutta33/BloggingSite/assets/146577817/231d9917-824e-4d78-9ad4-c0533847a931)
+**Create a new Blog**
+-![create](https://github.com/ArionDutta33/BloggingSite/assets/146577817/7b417024-30b2-4809-9ef0-591b992ca4b2)
