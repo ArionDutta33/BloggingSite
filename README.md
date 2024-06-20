@@ -24,7 +24,8 @@ This is a full-stack blogging website built with Node.js, Express.js, EJS, Tailw
 
  ##Screen shots
  **Home Page**
--![serene-scribbles-high-resolution-logo-black-transparent](https://github.com/ArionDutta33/BloggingSite/assets/146577817/3bfb69a5-8651-46b6-88b4-00a5fd6d5499)
+- ![homepageTrue](https://github.com/ArionDutta33/BloggingSite/assets/146577817/f5fdcf99-c3aa-4f28-885e-7e2d6e06f2cf)
+
 **Log in**
 -![login](https://github.com/ArionDutta33/BloggingSite/assets/146577817/231d9917-824e-4d78-9ad4-c0533847a931)
 **Create a new Blog**
