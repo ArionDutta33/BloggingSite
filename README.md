@@ -22,7 +22,7 @@ This is a full-stack blogging website built with Node.js, Express.js, EJS, Tailw
 - **Database:** MongoDB
 - **Deployment:** --
 
- ##Screen shots
+ ## Screen shots
  **Home Page**
 - ![homepageTrue](https://github.com/ArionDutta33/BloggingSite/assets/146577817/f5fdcf99-c3aa-4f28-885e-7e2d6e06f2cf)
 
